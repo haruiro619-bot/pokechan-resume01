@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ポケチャン履歴書メーカー
 
-## Getting Started
+ポケモンチャンピオンズのプレイヤー向け、自己紹介画像（履歴書）作成 Web ツール。
 
-First, run the development server:
+ブラウザ上でフォームに入力するだけで、X（旧Twitter）に「#ポケチャン履歴書」タグ付きで共有できる PNG 画像を生成します。
+
+## 機能
+
+- 14項目の入力フィールド（必須5・任意9）
+- ポケモン選択UI（ポケチャン内定211件 / 全ポケモン1050件）
+- 3種のデザインテーマ（ゲーム公式風 / レトロドット / 星空・月夜）
+- ライブプレビュー
+- PNG ダウンロード（2160×2160px）
+- X シェア（Web Share API / X intent）
+- 入力状態の localStorage 自動保存
+- サーバーへのデータ送信なし
+
+## 開発
 
 ```bash
+npm install
+npm run data:generate   # 初回のみ: data/pokemon-*.json を生成
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## テスト
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ビルド
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## デプロイ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GitHub リポジトリと Vercel を連携すると、main ブランチへの push で自動デプロイされます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 法務
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 公式ポケモン画像・素材は使用していません
+- ポケモン名はテキストとして使用しています
+- アップロード画像の著作権はユーザーに帰属し、その責任もユーザーが負います
+- 本ツールは非公式のファンメイドツールです
+- ポケモン・ポケモンチャンピオンズは株式会社ポケモン / 任天堂の登録商標です
