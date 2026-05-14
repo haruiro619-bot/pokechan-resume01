@@ -1,5 +1,4 @@
 'use client';
-import { useState, useEffect } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 
@@ -15,18 +14,6 @@ type Props = {
 };
 
 export function TextareaField({ id, label, value, onChange, maxLength, required, hint, rows = 3 }: Props) {
-  const [internal, setInternal] = useState(value);
-
-  useEffect(() => {
-    setInternal(value);
-  }, [value]);
-
-  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const next = e.target.value.slice(0, maxLength);
-    setInternal(next);
-    onChange(next);
-  }
-
   return (
     <div className="space-y-1">
       <Label htmlFor={id}>
@@ -36,11 +23,11 @@ export function TextareaField({ id, label, value, onChange, maxLength, required,
       <Textarea
         id={id}
         rows={rows}
-        value={internal}
+        value={value}
         maxLength={maxLength}
-        onChange={handleChange}
+        onChange={(e) => onChange(e.target.value.slice(0, maxLength))}
       />
-      <p className="text-xs text-neutral-500">{internal.length} / {maxLength}</p>
+      <p className="text-xs text-neutral-500">{value.length} / {maxLength}</p>
     </div>
   );
 }
