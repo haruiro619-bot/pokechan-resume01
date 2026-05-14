@@ -11,31 +11,31 @@ function rankLabel(rank: ResumeForm['rank']): string {
 
 export function Starry({ form }: { form: ResumeForm }) {
   return (
-    <div className="absolute inset-0 bg-gradient-to-br from-[#1a1145] via-[#2a1a5e] to-[#3a1f6e] text-white overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1145 0%, #2a1a5e 50%, #3a1f6e 100%)', color: 'white' }}>
       <Stars />
       <Moon />
 
-      <div className="relative p-16 h-full flex flex-col gap-8">
+      <div className="relative p-16 h-full flex flex-col gap-8 overflow-hidden">
         <div className="flex items-center gap-8">
           {form.iconDataUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={form.iconDataUrl}
               alt=""
-              className="w-40 h-40 rounded-full object-cover ring-4 ring-amber-200/60"
-              style={{ boxShadow: '0 0 40px rgba(252,211,77,0.4)' }}
+              className="w-40 h-40 rounded-full object-cover flex-shrink-0"
+              style={{ boxShadow: '0 0 0 4px rgba(253,230,138,0.6), 0 0 40px rgba(252,211,77,0.4)' }}
             />
           ) : (
-            <div className="w-40 h-40 rounded-full bg-white/10 ring-4 ring-amber-200/60" />
+            <div className="w-40 h-40 rounded-full bg-white/10 flex-shrink-0" style={{ boxShadow: '0 0 0 4px rgba(253,230,138,0.6)' }} />
           )}
-          <div>
-            <div className="text-5xl font-serif tracking-wide">{form.handle || 'Trainer'}</div>
-            <div className="text-amber-200/80 mt-2 text-lg">{rankLabel(form.rank)}</div>
+          <div className="min-w-0">
+            <div className="text-5xl font-serif tracking-wide truncate">{form.handle || 'Trainer'}</div>
+            <div className="mt-2 text-lg" style={{ color: 'rgba(253,230,138,0.8)' }}>{rankLabel(form.rank)}</div>
           </div>
         </div>
 
         {form.comment && (
-          <div className="text-xl italic text-amber-50/90 border-l-2 border-amber-200/60 pl-4">
+          <div className="text-xl italic" style={{ color: 'rgba(255,251,235,0.9)', borderLeft: '2px solid rgba(253,230,138,0.6)', paddingLeft: '1rem' }}>
             {form.comment}
           </div>
         )}
@@ -52,14 +52,14 @@ export function Starry({ form }: { form: ResumeForm }) {
         </div>
 
         {form.wantToConnect && (
-          <div className="text-base text-amber-50/90">
-            <div className="text-amber-200/80 text-sm mb-1">こんな人と繋がりたい</div>
+          <div className="text-base" style={{ color: 'rgba(255,251,235,0.9)' }}>
+            <div className="text-sm mb-1" style={{ color: 'rgba(253,230,138,0.8)' }}>こんな人と繋がりたい</div>
             {form.wantToConnect}
           </div>
         )}
 
         {form.snsLink && (
-          <div className="text-sm text-amber-200/80 break-all">{form.snsLink}</div>
+          <div className="text-sm break-all" style={{ color: 'rgba(253,230,138,0.8)' }}>{form.snsLink}</div>
         )}
       </div>
 
@@ -71,10 +71,10 @@ export function Starry({ form }: { form: ResumeForm }) {
 function StarryField({ label, values }: { label: string; values: string[] }) {
   return (
     <div>
-      <div className="text-amber-200/80 text-sm">{label}</div>
-      <div className="flex flex-wrap gap-1 mt-1">
+      <div className="text-sm mb-1" style={{ color: 'rgba(253,230,138,0.8)' }}>{label}</div>
+      <div className="flex flex-wrap gap-1">
         {values.map(v => (
-          <span key={v} className="bg-white/10 backdrop-blur px-2 py-0.5 rounded text-amber-50">{v}</span>
+          <span key={v} className="px-2 py-0.5 rounded text-sm" style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,251,235,1)' }}>{v}</span>
         ))}
       </div>
     </div>
@@ -92,8 +92,8 @@ function Stars() {
         return (
           <div
             key={i}
-            className="absolute bg-white rounded-full opacity-70"
-            style={{ top: `${top}%`, left: `${left}%`, width: size, height: size }}
+            className="absolute bg-white rounded-full"
+            style={{ top: `${top}%`, left: `${left}%`, width: size, height: size, opacity: 0.7 }}
           />
         );
       })}
