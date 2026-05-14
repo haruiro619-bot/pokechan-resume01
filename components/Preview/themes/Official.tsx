@@ -18,18 +18,18 @@ export function Official({ form }: { form: ResumeForm }) {
         <div className="ml-auto text-sm opacity-80">{SITE_NAME}</div>
       </div>
 
-      <div className="bg-white text-neutral-900 m-8 rounded-2xl shadow-xl p-8 h-[calc(100%-152px)] flex flex-col gap-6">
+      <div className="bg-white text-neutral-900 m-8 rounded-2xl shadow-xl p-8 h-[calc(100%-152px)] flex flex-col gap-6 overflow-hidden">
         <div className="flex items-center gap-6">
           {form.iconDataUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={form.iconDataUrl} alt="" className="w-36 h-36 rounded-full object-cover border-4 border-red-500" />
+            <img src={form.iconDataUrl} alt="" className="w-36 h-36 rounded-full object-cover border-4 border-red-500 flex-shrink-0" />
           ) : (
-            <div className="w-36 h-36 rounded-full bg-neutral-200 border-4 border-red-500" />
+            <div className="w-36 h-36 rounded-full bg-neutral-200 border-4 border-red-500 flex-shrink-0" />
           )}
-          <div className="flex-1">
-            <div className="text-3xl font-bold">{form.handle || 'TRAINER'}</div>
+          <div className="flex-1 min-w-0">
+            <div className="text-3xl font-bold truncate">{form.handle || 'TRAINER'}</div>
             <div className="text-base text-neutral-600 mt-1">{rankLabel(form.rank)}</div>
-            <div className="mt-3 text-base">{form.comment}</div>
+            <div className="mt-3 text-base line-clamp-3">{form.comment}</div>
           </div>
         </div>
 
