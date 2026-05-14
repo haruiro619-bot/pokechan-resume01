@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { ThemeSelector } from '@/components/Form/ThemeSelector';
 import { InitialThemeModal } from '@/components/InitialThemeModal';
 import { DownloadButton } from '@/components/Export/DownloadButton';
+import { ShareButton } from '@/components/Export/ShareButton';
 
 export default function Home() {
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -20,6 +21,7 @@ export default function Home() {
           <Preview canvasRef={canvasRef} />
           <div className="flex gap-2">
             <DownloadButton canvasRef={canvasRef} />
+            <ShareButton canvasRef={canvasRef} />
           </div>
         </div>
         <div className="p-4 md:p-0">
