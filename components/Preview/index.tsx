@@ -1,0 +1,42 @@
+'use client';
+import { forwardRef } from 'react';
+import { useAppStore } from '@/lib/store';
+import { Official } from './themes/Official';
+import { Retro } from './themes/Retro';
+import { Starry } from './themes/Starry';
+
+export const PREVIEW_PX = 1080;
+
+export const PreviewCanvas = forwardRef<HTMLDivElement>(function PreviewCanvas(_, ref) {
+  const form = useAppStore(s => s.form);
+  const themeId = useAppStore(s => s.themeId);
+  return (
+    <div
+      ref={ref}
+      style={{ width: PREVIEW_PX, height: PREVIEW_PX }}
+      className="relative overflow-hidden"
+    >
+      {themeId === 'official' && <Official form={form} />}
+      {themeId === 'retro' && <Retro form={form} />}
+      {themeId === 'starry' && <Starry form={form} />}
+    </div>
+  );
+});
+
+export function Preview({ canvasRef }: { canvasRef: React.RefObject<HTMLDivElement | null> }) {
+  return (
+    <section aria-label="プレビュー" className="w-full max-w-[540px] mx-auto">
+      <div
+        className="relative w-full overflow-hidden border rounded"
+        style={{ aspectRatio: '1 / 1' }}
+      >
+        <div
+          className="absolute top-0 left-0 origin-top-left"
+          style={{ transform: 'scale(0.5)' }}
+        >
+          <PreviewCanvas ref={canvasRef} />
+        </div>
+      </div>
+    </section>
+  );
+}
