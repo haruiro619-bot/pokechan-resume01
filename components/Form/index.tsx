@@ -10,6 +10,7 @@ import { BattlegroundSelect } from './BattlegroundSelect';
 import { PresetChipInput } from './PresetChipInput';
 import { UrlInput } from './UrlInput';
 import { PLAY_HISTORY_PRESETS, BATTLE_STYLE_PRESETS } from '@/lib/constants/presets';
+import { ResetButton } from './ResetButton';
 
 export function Form() {
   const form = useAppStore(s => s.form);
@@ -86,6 +87,9 @@ export function Form() {
         rows={2}
       />
       <UrlInput value={form.snsLink} onChange={(v) => updateForm({ snsLink: v })} />
+      <div className="pt-4 border-t">
+        <ResetButton />
+      </div>
     </section>
   );
 }
