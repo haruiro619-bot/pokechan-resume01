@@ -4,6 +4,12 @@ import { HandleInput } from './HandleInput';
 import { TextareaField } from './TextareaField';
 import { AvatarUpload } from './AvatarUpload';
 import { PokemonPicker } from './PokemonPicker';
+import { RankPicker } from './RankPicker';
+import { RuleCheckboxes } from './RuleCheckboxes';
+import { BattlegroundSelect } from './BattlegroundSelect';
+import { PresetChipInput } from './PresetChipInput';
+import { UrlInput } from './UrlInput';
+import { PLAY_HISTORY_PRESETS, BATTLE_STYLE_PRESETS } from '@/lib/constants/presets';
 
 export function Form() {
   const form = useAppStore(s => s.form);
@@ -34,6 +40,25 @@ export function Form() {
         min={2}
         max={3}
       />
+      <RankPicker value={form.rank} onChange={(v) => updateForm({ rank: v })} />
+      <RuleCheckboxes value={form.rules} onChange={(v) => updateForm({ rules: v })} />
+      <BattlegroundSelect value={form.battleground} onChange={(v) => updateForm({ battleground: v })} />
+      <PresetChipInput
+        id="playHistory"
+        label="プレイ歴"
+        presets={PLAY_HISTORY_PRESETS}
+        value={form.playHistory}
+        onChange={(v) => updateForm({ playHistory: v })}
+        maxLength={30}
+      />
+      <PresetChipInput
+        id="battleStyle"
+        label="好きなバトルスタイル"
+        presets={BATTLE_STYLE_PRESETS}
+        value={form.battleStyle}
+        onChange={(v) => updateForm({ battleStyle: v })}
+        maxLength={20}
+      />
       <TextareaField
         id="comment"
         label="一言コメント / 自己紹介"
@@ -60,6 +85,7 @@ export function Form() {
         maxLength={50}
         rows={2}
       />
+      <UrlInput value={form.snsLink} onChange={(v) => updateForm({ snsLink: v })} />
     </section>
   );
 }
