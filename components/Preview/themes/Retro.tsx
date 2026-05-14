@@ -11,19 +11,27 @@ function rankLabel(rank: ResumeForm['rank']): string {
 
 export function Retro({ form }: { form: ResumeForm }) {
   return (
-    <div className="absolute inset-0 bg-[#9bbc0f] text-[#0f380f] p-12" style={{ fontFamily: 'ui-monospace, "Cascadia Mono", Menlo, monospace', letterSpacing: '0.05em' }}>
-      <div className="border-4 border-[#0f380f] h-full p-8 relative">
+    <div
+      className="absolute inset-0 bg-[#9bbc0f] text-[#0f380f] p-12"
+      style={{ fontFamily: 'ui-monospace, "Cascadia Mono", Menlo, monospace', letterSpacing: '0.05em' }}
+    >
+      <div className="border-4 border-[#0f380f] h-full p-8 relative overflow-hidden">
         <div className="text-3xl font-bold mb-6">▶ TRAINER DATA</div>
 
         <div className="flex items-start gap-6 mb-6">
           {form.iconDataUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={form.iconDataUrl} alt="" className="w-32 h-32 object-cover border-4 border-[#0f380f]" style={{ imageRendering: 'pixelated' }} />
+            <img
+              src={form.iconDataUrl}
+              alt=""
+              className="w-32 h-32 object-cover border-4 border-[#0f380f] flex-shrink-0"
+              style={{ imageRendering: 'pixelated' }}
+            />
           ) : (
-            <div className="w-32 h-32 bg-[#306230] border-4 border-[#0f380f]" />
+            <div className="w-32 h-32 bg-[#306230] border-4 border-[#0f380f] flex-shrink-0" />
           )}
-          <div>
-            <div className="text-4xl">{form.handle || 'NONAME'}</div>
+          <div className="min-w-0">
+            <div className="text-4xl truncate">{form.handle || 'NONAME'}</div>
             <div className="text-lg mt-2">{rankLabel(form.rank)}</div>
           </div>
         </div>
@@ -39,7 +47,7 @@ export function Retro({ form }: { form: ResumeForm }) {
           {form.playHistory && <Line label="HIST" value={form.playHistory} />}
           {form.wantToConnect && <Line label="WANT" value={form.wantToConnect} />}
           {form.oshiCreator && <Line label="FAV " value={form.oshiCreator} />}
-          {form.snsLink && <Line label="LINK" value={form.snsLink} />}
+          {form.snsLink && <Line label="URL " value={form.snsLink} />}
         </div>
 
         <Credit className="text-[#0f380f]" />
@@ -51,7 +59,7 @@ export function Retro({ form }: { form: ResumeForm }) {
 function Line({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex gap-3">
-      <span className="opacity-70">[{label}]</span>
+      <span className="opacity-70 flex-shrink-0">[{label}]</span>
       <span className="flex-1 break-all">{value}</span>
     </div>
   );
