@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(\\(Get-Content \"ポケモンリスト（ポケチャン内定のみ）.txt\" | Measure-Object -Line | Select-Object -ExpandProperty Lines\\), \\(Get-Content \"ポケモンリスト（全ポケモン）.txt\" | Measure-Object -Line | Select-Object -ExpandProperty Lines\\) | Out-String)",
+      "Bash(npm run *)"
+    ]
+  }
+}
