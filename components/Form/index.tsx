@@ -2,6 +2,7 @@
 import { useAppStore } from '@/lib/store';
 import { HandleInput } from './HandleInput';
 import { TextareaField } from './TextareaField';
+import { AvatarUpload } from './AvatarUpload';
 
 export function Form() {
   const form = useAppStore(s => s.form);
@@ -9,6 +10,7 @@ export function Form() {
   return (
     <section aria-label="入力フォーム" className="space-y-6">
       <HandleInput />
+      <AvatarUpload />
       <TextareaField
         id="comment"
         label="一言コメント / 自己紹介"
