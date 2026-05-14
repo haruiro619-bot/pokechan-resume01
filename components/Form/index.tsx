@@ -3,6 +3,7 @@ import { useAppStore } from '@/lib/store';
 import { HandleInput } from './HandleInput';
 import { TextareaField } from './TextareaField';
 import { AvatarUpload } from './AvatarUpload';
+import { PokemonPicker } from './PokemonPicker';
 
 export function Form() {
   const form = useAppStore(s => s.form);
@@ -11,6 +12,28 @@ export function Form() {
     <section aria-label="入力フォーム" className="space-y-6">
       <HandleInput />
       <AvatarUpload />
+      <PokemonPicker
+        label="推し（純粋推しポケモン） *"
+        value={form.oshiPokemon}
+        onChange={(v) => updateForm({ oshiPokemon: v })}
+        min={1}
+        max={3}
+      />
+      <PokemonPicker
+        label="バトルでの推し *"
+        value={form.battleOshi}
+        onChange={(v) => updateForm({ battleOshi: v })}
+        min={1}
+        max={3}
+      />
+      <PokemonPicker
+        label="推しの並び（任意）"
+        hint="対戦上相性の良いポケモンの組み合わせ（パーティの核）"
+        value={form.narabi}
+        onChange={(v) => updateForm({ narabi: v })}
+        min={2}
+        max={3}
+      />
       <TextareaField
         id="comment"
         label="一言コメント / 自己紹介"
