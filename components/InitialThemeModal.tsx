@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/lib/store';
@@ -14,9 +15,18 @@ export function InitialThemeModal() {
   const seen = useAppStore(s => s.hasSeenInitialModal);
   const mark = useAppStore(s => s.markInitialModalSeen);
   const setTheme = useAppStore(s => s.setTheme);
+  // Use local state to directly control the dialog.
+  // Base UI's Dialog does not reliably close in response to external `open` prop changes,
+  // so we drive open/close via setOpen rather than relying on !seen.
+  const [open, setOpen] = useState(!seen);
+
+  const close = () => {
+    setOpen(false);
+    mark();
+  };
 
   return (
-    <Dialog open={!seen} onOpenChange={(o) => { if (!o) mark(); }}>
+    <Dialog open={open} onOpenChange={(isOpen) => { if (!isOpen) close(); }}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>デザインテーマを選んでください</DialogTitle>
@@ -26,7 +36,7 @@ export function InitialThemeModal() {
             <button
               key={t.id}
               type="button"
-              onClick={() => { setTheme(t.id); mark(); }}
+              onClick={() => { setTheme(t.id); close(); }}
               className="text-left border rounded p-3 hover:bg-neutral-50 transition-colors"
             >
               <div className="font-bold">{t.label}</div>
@@ -35,7 +45,7 @@ export function InitialThemeModal() {
           ))}
         </div>
         <DialogFooter className="flex-col items-start gap-1">
-          <Button variant="outline" onClick={() => mark()}>あとで決める</Button>
+          <Button variant="outline" onClick={close}>あとで決める</Button>
           <p className="text-xs text-neutral-400">テーマとフォントはヘッダーからいつでも変更できます</p>
         </DialogFooter>
       </DialogContent>
