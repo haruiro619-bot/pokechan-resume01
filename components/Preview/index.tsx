@@ -4,16 +4,19 @@ import { useAppStore } from '@/lib/store';
 import { Official } from './themes/Official';
 import { Retro } from './themes/Retro';
 import { Starry } from './themes/Starry';
+import { FONTS } from '@/lib/constants/fonts';
 
 export const PREVIEW_PX = 1080;
 
 export const PreviewCanvas = forwardRef<HTMLDivElement>(function PreviewCanvas(_, ref) {
   const form = useAppStore(s => s.form);
   const themeId = useAppStore(s => s.themeId);
+  const fontId = useAppStore(s => s.fontId);
+  const fontDef = FONTS.find(f => f.id === fontId) ?? FONTS[0];
   return (
     <div
       ref={ref}
-      style={{ width: PREVIEW_PX, height: PREVIEW_PX }}
+      style={{ width: PREVIEW_PX, height: PREVIEW_PX, fontFamily: fontDef.cssVar }}
       className="relative overflow-hidden"
     >
       {themeId === 'official' && <Official form={form} />}

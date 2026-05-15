@@ -13,10 +13,10 @@ export function Retro({ form }: { form: ResumeForm }) {
   return (
     <div
       className="absolute inset-0 bg-[#9bbc0f] text-[#0f380f] p-12"
-      style={{ fontFamily: 'ui-monospace, "Cascadia Mono", Menlo, monospace', letterSpacing: '0.05em' }}
+      style={{ letterSpacing: '0.05em' }}
     >
       <div className="border-4 border-[#0f380f] h-full p-8 relative overflow-hidden">
-        <div className="text-3xl font-bold mb-6">▶ TRAINER DATA</div>
+        <div className="text-4xl font-bold mb-6">▶ TRAINER DATA</div>
 
         <div className="flex items-start gap-6 mb-6">
           {form.iconDataUrl ? (
@@ -31,15 +31,15 @@ export function Retro({ form }: { form: ResumeForm }) {
             <div className="w-32 h-32 bg-[#306230] border-4 border-[#0f380f] flex-shrink-0" />
           )}
           <div className="min-w-0">
-            <div className="text-4xl truncate">{form.handle || 'NONAME'}</div>
-            <div className="text-lg mt-2">{rankLabel(form.rank)}</div>
+            <div className="text-5xl truncate">{form.handle || 'NONAME'}</div>
+            <div className="text-xl mt-2">{rankLabel(form.rank)}</div>
           </div>
         </div>
 
-        <div className="space-y-2 text-lg">
+        <div className="space-y-3 text-xl">
           {form.comment && <Line label="MSG" value={form.comment} />}
-          {form.oshiPokemon.length > 0 && <Line label="OSHI" value={form.oshiPokemon.join(' / ')} />}
-          {form.battleOshi.length > 0 && <Line label="BTL" value={form.battleOshi.join(' / ')} />}
+          {form.oshiPokemon.length > 0 && <Line label="OSHI" value={form.oshiPokemon.join(' / ')} prominent />}
+          {form.battleOshi.length > 0 && <Line label="BTL" value={form.battleOshi.join(' / ')} prominent />}
           {form.narabi.length > 0 && <Line label="LINK" value={form.narabi.join(' / ')} />}
           {form.rules.length > 0 && <Line label="RULE" value={form.rules.join(' & ')} />}
           {form.battleground && <Line label="AREA" value={form.battleground} />}
@@ -56,9 +56,9 @@ export function Retro({ form }: { form: ResumeForm }) {
   );
 }
 
-function Line({ label, value }: { label: string; value: string }) {
+function Line({ label, value, prominent }: { label: string; value: string; prominent?: boolean }) {
   return (
-    <div className="flex gap-3">
+    <div className={`flex gap-3 ${prominent ? 'text-2xl font-bold' : ''}`}>
       <span className="opacity-70 flex-shrink-0">[{label}]</span>
       <span className="flex-1 break-all">{value}</span>
     </div>

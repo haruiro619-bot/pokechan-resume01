@@ -17,7 +17,7 @@ export function RankPicker({ value, onChange }: { value: Value; onChange: (v: Va
 
   return (
     <div className="space-y-2">
-      <Label htmlFor="rank-tier">現在ランク</Label>
+      <Label htmlFor="rank-tier">最高ランク</Label>
       <div className="flex gap-2">
         <select
           id="rank-tier"

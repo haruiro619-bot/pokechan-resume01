@@ -1,6 +1,7 @@
 import type { RankTierId } from './constants/ranks';
 import type { Rule } from './constants/rules';
 import type { Battleground } from './constants/battlegrounds';
+import type { FontId } from './constants/fonts';
 
 export type ResumeForm = {
   handle: string;
@@ -24,6 +25,7 @@ export type ThemeId = 'official' | 'retro' | 'starry';
 export type AppState = {
   form: ResumeForm;
   themeId: ThemeId;
+  fontId: FontId;
   pokemonListMode: 'pokechan' | 'all';
   hasSeenInitialModal: boolean;
 };

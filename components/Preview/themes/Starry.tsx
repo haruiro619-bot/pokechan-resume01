@@ -30,19 +30,19 @@ export function Starry({ form }: { form: ResumeForm }) {
           )}
           <div className="min-w-0">
             <div className="text-5xl font-serif tracking-wide truncate">{form.handle || 'Trainer'}</div>
-            <div className="mt-2 text-lg" style={{ color: 'rgba(253,230,138,0.8)' }}>{rankLabel(form.rank)}</div>
+            <div className="mt-2 text-xl" style={{ color: 'rgba(253,230,138,0.8)' }}>{rankLabel(form.rank)}</div>
           </div>
         </div>
 
         {form.comment && (
-          <div className="text-xl italic" style={{ color: 'rgba(255,251,235,0.9)', borderLeft: '2px solid rgba(253,230,138,0.6)', paddingLeft: '1rem' }}>
+          <div className="text-2xl italic" style={{ color: 'rgba(255,251,235,0.9)', borderLeft: '2px solid rgba(253,230,138,0.6)', paddingLeft: '1rem' }}>
             {form.comment}
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-6 text-base">
-          {form.oshiPokemon.length > 0 && <StarryField label="推し" values={form.oshiPokemon} />}
-          {form.battleOshi.length > 0 && <StarryField label="バトル推し" values={form.battleOshi} />}
+        <div className="grid grid-cols-2 gap-6">
+          {form.oshiPokemon.length > 0 && <StarryField label="推し" values={form.oshiPokemon} prominent />}
+          {form.battleOshi.length > 0 && <StarryField label="バトル推し" values={form.battleOshi} prominent />}
           {form.narabi.length > 0 && <StarryField label="並び" values={form.narabi} />}
           {form.rules.length > 0 && <StarryField label="ルール" values={form.rules} />}
           {form.battleground && <StarryField label="主戦場" values={[form.battleground]} />}
@@ -52,14 +52,14 @@ export function Starry({ form }: { form: ResumeForm }) {
         </div>
 
         {form.wantToConnect && (
-          <div className="text-base" style={{ color: 'rgba(255,251,235,0.9)' }}>
-            <div className="text-sm mb-1" style={{ color: 'rgba(253,230,138,0.8)' }}>こんな人と繋がりたい</div>
+          <div className="text-lg" style={{ color: 'rgba(255,251,235,0.9)' }}>
+            <div className="text-base mb-1" style={{ color: 'rgba(253,230,138,0.8)' }}>こんな人と繋がりたい</div>
             {form.wantToConnect}
           </div>
         )}
 
         {form.snsLink && (
-          <div className="text-sm break-all" style={{ color: 'rgba(253,230,138,0.8)' }}>{form.snsLink}</div>
+          <div className="text-base break-all" style={{ color: 'rgba(253,230,138,0.8)' }}>{form.snsLink}</div>
         )}
       </div>
 
@@ -68,13 +68,13 @@ export function Starry({ form }: { form: ResumeForm }) {
   );
 }
 
-function StarryField({ label, values }: { label: string; values: string[] }) {
+function StarryField({ label, values, prominent }: { label: string; values: string[]; prominent?: boolean }) {
   return (
     <div>
-      <div className="text-sm mb-1" style={{ color: 'rgba(253,230,138,0.8)' }}>{label}</div>
+      <div className="text-base mb-1" style={{ color: 'rgba(253,230,138,0.8)' }}>{label}</div>
       <div className="flex flex-wrap gap-1">
         {values.map(v => (
-          <span key={v} className="px-2 py-0.5 rounded text-sm" style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,251,235,1)' }}>{v}</span>
+          <span key={v} className={`px-2 py-0.5 rounded ${prominent ? 'text-xl font-semibold' : 'text-base'}`} style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,251,235,1)' }}>{v}</span>
         ))}
       </div>
     </div>

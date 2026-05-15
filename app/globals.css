@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Klee+One:wght@400;600&family=Zen+Maru+Gothic:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Shippori+Mincho:wght@400;700&family=DotGothic16&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -49,6 +50,13 @@
 }
 
 :root {
+  --font-mplus-rounded: 'M PLUS Rounded 1c', sans-serif;
+  --font-klee: 'Klee One', cursive;
+  --font-zen-maru: 'Zen Maru Gothic', sans-serif;
+  --font-noto-serif: 'Noto Serif JP', serif;
+  --font-shippori: 'Shippori Mincho', serif;
+  --font-dot-gothic: 'DotGothic16', sans-serif;
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

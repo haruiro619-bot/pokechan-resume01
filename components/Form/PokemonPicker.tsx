@@ -73,7 +73,18 @@ export function PokemonPicker({ label, value, onChange, min = 1, max, hint }: Pr
         placeholder="カタカナで検索"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            const name = query.trim();
+            if (name && !value.includes(name) && value.length < max) {
+              onChange([...value, name]);
+              setQuery('');
+            }
+          }
+        }}
       />
+      <p className="text-xs text-neutral-400">リストにないポケモンはそのままEnterで追加できます</p>
 
       <div className="max-h-40 overflow-y-auto border rounded">
         {results.map((name) => {

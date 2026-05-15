@@ -46,6 +46,48 @@ describe('PokemonPicker', () => {
     expect(v.length).toBe(2);
   });
 
+  it('adds free-text pokemon via Enter key', async () => {
+    let v: string[] = [];
+    const { rerender } = render(
+      <PokemonPicker label="推し" value={v} onChange={(n) => { v = n; }} max={3} />
+    );
+    const input = screen.getByLabelText('ポケモン検索');
+    await userEvent.type(input, 'カスタムポケモン');
+    await userEvent.keyboard('{Enter}');
+    rerender(<PokemonPicker label="推し" value={v} onChange={(n) => { v = n; }} max={3} />);
+    expect(v).toEqual(['カスタムポケモン']);
+  });
+
+  it('does not add free-text when query is empty on Enter', async () => {
+    let v: string[] = [];
+    render(<PokemonPicker label="推し" value={v} onChange={(n) => { v = n; }} max={3} />);
+    const input = screen.getByLabelText('ポケモン検索');
+    await userEvent.click(input);
+    await userEvent.keyboard('{Enter}');
+    expect(v).toEqual([]);
+  });
+
+  it('does not add free-text when max is reached on Enter', async () => {
+    let v = ['ピカチュウ', 'カメックス'];
+    render(<PokemonPicker label="推し" value={v} onChange={(n) => { v = n; }} max={2} />);
+    const input = screen.getByLabelText('ポケモン検索');
+    await userEvent.type(input, 'フシギバナ');
+    await userEvent.keyboard('{Enter}');
+    expect(v.length).toBe(2);
+  });
+
+  it('does not add free-text duplicate on Enter', async () => {
+    let v = ['ピカチュウ'];
+    const { rerender } = render(
+      <PokemonPicker label="推し" value={v} onChange={(n) => { v = n; }} max={3} />
+    );
+    const input = screen.getByLabelText('ポケモン検索');
+    await userEvent.type(input, 'ピカチュウ');
+    await userEvent.keyboard('{Enter}');
+    rerender(<PokemonPicker label="推し" value={v} onChange={(n) => { v = n; }} max={3} />);
+    expect(v).toEqual(['ピカチュウ']);
+  });
+
   it('removes pokemon when chip × is clicked', async () => {
     let v = ['フシギバナ'];
     const { rerender } = render(

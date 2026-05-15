@@ -34,8 +34,9 @@ export function InitialThemeModal() {
             </button>
           ))}
         </div>
-        <DialogFooter>
+        <DialogFooter className="flex-col items-start gap-1">
           <Button variant="outline" onClick={() => mark()}>あとで決める</Button>
+          <p className="text-xs text-neutral-400">テーマとフォントはヘッダーからいつでも変更できます</p>
         </DialogFooter>
       </DialogContent>
     </Dialog>
