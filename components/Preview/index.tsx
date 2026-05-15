@@ -1,5 +1,5 @@
 'use client';
-import { forwardRef } from 'react';
+import { forwardRef, useRef, useState, useEffect } from 'react';
 import { useAppStore } from '@/lib/store';
 import { Official } from './themes/Official';
 import { Retro } from './themes/Retro';
@@ -30,15 +30,29 @@ export const PreviewCanvas = forwardRef<HTMLDivElement>(function PreviewCanvas(_
 });
 
 export function Preview({ canvasRef }: { canvasRef: React.RefObject<HTMLDivElement | null> }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.5);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const update = () => setScale(el.offsetWidth / PREVIEW_PX);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
     <section aria-label="プレビュー" className="w-full max-w-[540px] mx-auto">
       <div
+        ref={wrapperRef}
         className="relative w-full overflow-hidden border rounded"
         style={{ aspectRatio: '1 / 1' }}
       >
         <div
           className="absolute top-0 left-0 origin-top-left"
-          style={{ transform: 'scale(0.5)' }}
+          style={{ transform: `scale(${scale})` }}
         >
           <PreviewCanvas ref={canvasRef} />
         </div>

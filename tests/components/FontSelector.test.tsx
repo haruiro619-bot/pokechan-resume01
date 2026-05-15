@@ -24,20 +24,20 @@ describe('FontSelector', () => {
 
   it('renders sample text for each font', () => {
     render(<FontSelector />);
-    expect(screen.getByText('ふわふわ かわいい♪')).toBeInTheDocument();
-    expect(screen.getByText('GAME START 冒険へ')).toBeInTheDocument();
+    const buttons = screen.getAllByText('トレーナーカード');
+    expect(buttons.length).toBe(7);
   });
 
   it('marks the current font as selected', () => {
     useAppStore.setState({ fontId: 'mplusRounded' } as any);
     render(<FontSelector />);
-    const btn = screen.getByText('ふわふわ かわいい♪').closest('button')!;
+    const btn = screen.getByRole('button', { name: 'まるまる' });
     expect(btn).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('calls setFont when a font button is clicked', async () => {
     render(<FontSelector />);
-    const btn = screen.getByText('凛として 優雅に').closest('button')!;
+    const btn = screen.getByRole('button', { name: 'みやび' });
     await userEvent.click(btn);
     expect(useAppStore.getState().fontId).toBe('notoSerifJP');
   });

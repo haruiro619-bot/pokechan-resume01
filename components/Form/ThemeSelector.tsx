@@ -3,7 +3,7 @@ import { useAppStore } from '@/lib/store';
 import type { ThemeId } from '@/lib/types';
 
 const THEMES: { id: ThemeId; label: string }[] = [
-  { id: 'official', label: 'ゲーム公式風' },
+  { id: 'official', label: 'プレミアム' },
   { id: 'retro',    label: 'レトロドット' },
   { id: 'starry',   label: '星空・月夜' },
 ];

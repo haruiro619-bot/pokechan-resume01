@@ -21,6 +21,7 @@ export function FontSelector() {
                 <button
                   key={f.id}
                   type="button"
+                  aria-label={f.label}
                   aria-pressed={fontId === f.id}
                   onClick={() => setFont(f.id)}
                   className={`px-3 py-1.5 rounded border text-sm transition-colors
