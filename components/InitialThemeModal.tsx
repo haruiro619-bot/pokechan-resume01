@@ -6,7 +6,7 @@ import { useAppStore } from '@/lib/store';
 import type { ThemeId } from '@/lib/types';
 
 const THEMES: { id: ThemeId; label: string; desc: string }[] = [
-  { id: 'official', label: 'ゲーム公式風', desc: 'トレーナーカード調・赤バー' },
+  { id: 'official', label: 'プレミアム', desc: 'TCGカード風・ダーク' },
   { id: 'retro',    label: 'レトロドット', desc: 'GB初代の液晶緑' },
   { id: 'starry',   label: '星空・月夜',   desc: '紺＋月のエレガント' },
 ];

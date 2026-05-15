@@ -5,6 +5,7 @@ import { Preview } from '@/components/Preview';
 import { Footer } from '@/components/Footer';
 import { ThemeSelector } from '@/components/Form/ThemeSelector';
 import { FontSelector } from '@/components/Form/FontSelector';
+import { AccentSelector } from '@/components/Form/AccentSelector';
 import { InitialThemeModal } from '@/components/InitialThemeModal';
 import { DownloadButton } from '@/components/Export/DownloadButton';
 import { ShareButton } from '@/components/Export/ShareButton';
@@ -20,6 +21,7 @@ export default function Home() {
             <span className="text-xs text-neutral-500">テーマ</span>
             <ThemeSelector />
           </div>
+          <AccentSelector />
           <FontSelector />
           <p className="text-xs text-neutral-400">テーマ・フォントはここから変更できます</p>
         </div>

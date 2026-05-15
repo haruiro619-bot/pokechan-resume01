@@ -5,6 +5,7 @@ import { Official } from './themes/Official';
 import { Retro } from './themes/Retro';
 import { Starry } from './themes/Starry';
 import { FONTS } from '@/lib/constants/fonts';
+import { ACCENTS } from '@/lib/constants/accents';
 
 export const PREVIEW_PX = 1080;
 
@@ -12,14 +13,16 @@ export const PreviewCanvas = forwardRef<HTMLDivElement>(function PreviewCanvas(_
   const form = useAppStore(s => s.form);
   const themeId = useAppStore(s => s.themeId);
   const fontId = useAppStore(s => s.fontId);
+  const accentId = useAppStore(s => s.accentId);
   const fontDef = FONTS.find(f => f.id === fontId) ?? FONTS[0];
+  const accent = ACCENTS.find(a => a.id === accentId) ?? ACCENTS[0];
   return (
     <div
       ref={ref}
       style={{ width: PREVIEW_PX, height: PREVIEW_PX, fontFamily: fontDef.cssVar }}
       className="relative overflow-hidden"
     >
-      {themeId === 'official' && <Official form={form} />}
+      {themeId === 'official' && <Official form={form} accent={accent} />}
       {themeId === 'retro' && <Retro form={form} />}
       {themeId === 'starry' && <Starry form={form} />}
     </div>
