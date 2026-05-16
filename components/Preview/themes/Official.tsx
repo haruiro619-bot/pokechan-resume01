@@ -3,6 +3,7 @@ import { Credit } from '../Credit';
 import { RANKS } from '@/lib/constants/ranks';
 import { SITE_NAME } from '@/lib/constants/site';
 import type { AccentDef } from '@/lib/constants/accents';
+import { AutoFitText } from '../AutoFitText';
 
 function rankLabel(rank: ResumeForm['rank']): string {
   if (!rank) return '';
@@ -68,12 +69,13 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
         <div className="flex items-center gap-8 flex-shrink-0" style={{ height: 156 }}>
           <Avatar iconDataUrl={form.iconDataUrl} accent={accent} />
           <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-            <div
-              className="text-6xl font-bold truncate leading-none"
+            <AutoFitText
+              text={form.handle || 'TRAINER'}
+              maxSize={60}
+              minSize={24}
+              className="font-bold leading-none"
               style={{ textShadow: `0 0 24px ${accent.glow}` }}
-            >
-              {form.handle || 'TRAINER'}
-            </div>
+            />
             {rank && (
               <div className="text-3xl font-medium leading-none mt-2" style={{ color: accent.primary }}>
                 {rank}
@@ -129,12 +131,12 @@ function FixedField({ label, content, accent }: { label: string; content: string
       <div className="text-xl font-semibold leading-none" style={{ color: `${accent.primary}cc` }}>
         {label}
       </div>
-      <div
-        className="text-5xl font-bold leading-none mt-2 overflow-hidden whitespace-nowrap"
-        style={{ textOverflow: 'ellipsis' }}
-      >
-        {content}
-      </div>
+      <AutoFitText
+        text={content}
+        maxSize={48}
+        minSize={20}
+        className="font-bold leading-none mt-2"
+      />
     </div>
   );
 }
@@ -153,12 +155,12 @@ function FixedField2({ label, content, accent }: { label: string; content: strin
       <div className="text-lg font-semibold leading-none" style={{ color: `${accent.primary}cc` }}>
         {label}
       </div>
-      <div
-        className="text-4xl font-bold leading-none mt-1.5 overflow-hidden whitespace-nowrap"
-        style={{ textOverflow: 'ellipsis' }}
-      >
-        {content}
-      </div>
+      <AutoFitText
+        text={content}
+        maxSize={36}
+        minSize={16}
+        className="font-bold leading-none mt-1.5"
+      />
     </div>
   );
 }
