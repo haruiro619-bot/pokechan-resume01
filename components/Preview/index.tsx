@@ -24,7 +24,7 @@ export const PreviewCanvas = forwardRef<HTMLDivElement>(function PreviewCanvas(_
     >
       {themeId === 'official' && <Official form={form} accent={accent} />}
       {themeId === 'retro' && <Retro form={form} />}
-      {themeId === 'starry' && <Starry form={form} />}
+      {themeId === 'starry' && <Starry form={form} accent={accent} />}
     </div>
   );
 });
