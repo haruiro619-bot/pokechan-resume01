@@ -146,7 +146,7 @@ export function Retro({ form }: { form: ResumeForm }) {
           )}
 
           {form.comment && <RetroSep />}
-          {form.comment && <MsgRow value={form.comment} />}
+          {form.comment && <MultilineRow label="MSG " value={form.comment} />}
 
           {(form.rules.length > 0 || form.battleground) && (
             <div className="flex-shrink-0 flex gap-2" style={{ height: 56 }}>
@@ -170,7 +170,7 @@ export function Retro({ form }: { form: ResumeForm }) {
           {form.narabi.length > 0 && <DataRow label="LINK" value={join(form.narabi)} />}
           {form.battleStyle    && <DataRow label="STYL" value={form.battleStyle} />}
           {form.playHistory    && <DataRow label="HIST" value={form.playHistory} />}
-          {form.wantToConnect  && <DataRow label="WANT" value={form.wantToConnect} />}
+          {form.wantToConnect  && <MultilineRow label="WANT" value={form.wantToConnect} />}
           {form.oshiCreator    && <DataRow label="FAV " value={form.oshiCreator} />}
         </div>
       </div>
@@ -259,18 +259,18 @@ function RetroAvatar({ iconDataUrl }: { iconDataUrl: string }) {
   );
 }
 
-/** Prominent row — used for OSHI and BTL (h=72) */
+/** Prominent row — used for OSHI and BTL (h=96) */
 function ProminentRow({ label, value }: { label: string; value: string }) {
   return (
     <div
       className="flex-shrink-0 flex flex-col"
       style={{
-        height: 72,
-        padding: '8px 14px',
+        height: 96,
+        padding: '10px 14px',
         background: `${GB.dark}44`,
         border: `1px solid ${GB.dark}`,
         borderLeft: `6px solid ${GB.gold}`,
-        gap: 4,
+        gap: 6,
       }}
     >
       <div style={{ fontFamily: DOT, fontSize: 16, color: GB.gold, lineHeight: 1 }}>
@@ -278,7 +278,7 @@ function ProminentRow({ label, value }: { label: string; value: string }) {
       </div>
       <AutoFitText
         text={value}
-        maxSize={36}
+        maxSize={44}
         minSize={18}
         className="font-bold leading-none"
         style={{ color: GB.cream }}
@@ -287,29 +287,29 @@ function ProminentRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-/** Comment row — multiline support (h=88) */
-function MsgRow({ value }: { value: string }) {
-  // availableHeight = 88 - paddingTop(10) - paddingBottom(6) - label(16) - gap(4) = 52
+/** Multiline text row — used for MSG and WANT (h=96) */
+// availableHeight = 96 - paddingTop(10) - paddingBottom(6) - label(16) - gap(6) = 58
+function MultilineRow({ label, value }: { label: string; value: string }) {
   return (
     <div
       className="flex-shrink-0 flex flex-col"
       style={{
-        height: 88,
+        height: 96,
         padding: '10px 14px 6px',
         border: `1px solid ${GB.dark}`,
         borderLeft: `6px solid ${GB.dark}`,
-        gap: 4,
+        gap: 6,
       }}
     >
       <div style={{ fontFamily: DOT, fontSize: 16, color: `${GB.gold}99`, lineHeight: 1 }}>
-        [MSG ]
+        [{label}]
       </div>
       <AutoFitText
         text={value}
         maxSize={24}
         minSize={14}
         multiline
-        availableHeight={52}
+        availableHeight={58}
         className="leading-none"
         style={{ color: GB.mid }}
       />
