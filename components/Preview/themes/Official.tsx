@@ -48,18 +48,31 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
         {/* Header — 60px */}
         <div className="flex items-center justify-between flex-shrink-0" style={{ height: 60 }}>
           <div className="flex-1">
-            <div
-              className="text-5xl font-bold tracking-widest uppercase leading-none"
-              style={{
-                background: `linear-gradient(90deg, ${accent.secondary} 0%, ${accent.primary} 35%, #fffbeb 55%, ${accent.primary} 75%, ${accent.secondary} 100%)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                textShadow: `0 0 10px ${accent.glow}, 0 0 24px ${accent.glow}`,
-              }}
-            >
-              TRAINER CARD
-            </div>
+            <svg height="48" style={{ width: '100%', overflow: 'visible', display: 'block' }}>
+              <defs>
+                <linearGradient id={`og-g-${accent.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stopColor={accent.secondary} />
+                  <stop offset="35%"  stopColor={accent.primary} />
+                  <stop offset="55%"  stopColor="#fffbeb" />
+                  <stop offset="75%"  stopColor={accent.primary} />
+                  <stop offset="100%" stopColor={accent.secondary} />
+                </linearGradient>
+                <filter id={`og-f-${accent.id}`} x="-2%" y="-80%" width="104%" height="260%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+              <text
+                y="44"
+                fontSize="46"
+                fontWeight="bold"
+                letterSpacing="5"
+                fill={`url(#og-g-${accent.id})`}
+                filter={`url(#og-f-${accent.id})`}
+              >
+                TRAINER CARD
+              </text>
+            </svg>
             <div className="mt-2 h-px" style={{ background: `linear-gradient(90deg, ${accent.primary}cc, ${accent.primary}22, transparent)` }} />
           </div>
           <div className="text-sm pl-4 flex-shrink-0" style={{ color: 'rgba(255,255,255,0.25)' }}>{SITE_NAME}</div>

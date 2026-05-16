@@ -55,21 +55,31 @@ export function Starry({ form, accent }: { form: ResumeForm; accent: AccentDef }
       >
         {/* Header */}
         <div className="flex-shrink-0" style={{ height: 68 }}>
-          <div
-            style={{
-              fontSize: 52,
-              fontWeight: 900,
-              letterSpacing: '0.1em',
-              lineHeight: 1,
-              background: `linear-gradient(90deg, ${accent.secondary} 0%, #ffffff 30%, ${accent.primary} 55%, #F0C060 75%, ${accent.secondary} 100%)`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: `0 0 14px ${accent.primary}, 0 0 30px ${accent.primary}, 0 0 50px ${accent.glow}`,
-            }}
-          >
-            TRAINER CARD
-          </div>
+          <svg height="54" style={{ width: '100%', overflow: 'visible', display: 'block' }}>
+            <defs>
+              <linearGradient id={`sg-g-${accent.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor={accent.secondary} />
+                <stop offset="30%"  stopColor="#ffffff" />
+                <stop offset="55%"  stopColor={accent.primary} />
+                <stop offset="75%"  stopColor="#F0C060" />
+                <stop offset="100%" stopColor={accent.secondary} />
+              </linearGradient>
+              <filter id={`sg-f-${accent.id}`} x="-2%" y="-80%" width="104%" height="260%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            <text
+              y="50"
+              fontSize="52"
+              fontWeight="900"
+              letterSpacing="6"
+              fill={`url(#sg-g-${accent.id})`}
+              filter={`url(#sg-f-${accent.id})`}
+            >
+              TRAINER CARD
+            </text>
+          </svg>
           <div
             className="mt-3 h-px"
             style={{
