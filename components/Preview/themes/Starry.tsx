@@ -65,7 +65,7 @@ export function Starry({ form, accent }: { form: ResumeForm; accent: AccentDef }
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              filter: `drop-shadow(0 0 14px ${accent.primary}) drop-shadow(0 0 28px ${accent.glow})`,
+              textShadow: `0 0 14px ${accent.primary}, 0 0 30px ${accent.primary}, 0 0 50px ${accent.glow}`,
             }}
           >
             TRAINER CARD

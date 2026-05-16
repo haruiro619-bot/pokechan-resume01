@@ -55,7 +55,7 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                filter: `drop-shadow(0 0 10px ${accent.glow})`,
+                textShadow: `0 0 10px ${accent.glow}, 0 0 24px ${accent.glow}`,
               }}
             >
               TRAINER CARD
