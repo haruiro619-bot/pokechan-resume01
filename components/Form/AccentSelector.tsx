@@ -7,7 +7,7 @@ export function AccentSelector() {
   const accentId = useAppStore(s => s.accentId);
   const setAccent = useAppStore(s => s.setAccent);
 
-  if (themeId !== 'official') return null;
+  if (themeId !== 'official' && themeId !== 'starry') return null;
 
   return (
     <div className="flex items-center gap-2">
