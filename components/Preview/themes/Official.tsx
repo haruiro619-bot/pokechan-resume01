@@ -92,7 +92,7 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
         {/* Full-width fixed fields */}
         <FixedField label="推しポケモン"      content={joinValues(form.oshiPokemon)} accent={accent} />
         <FixedField label="バトルでの推し"    content={joinValues(form.battleOshi)}  accent={accent} />
-        <FixedField label="一言"              content={form.comment}                  accent={accent} />
+        <FixedField label="一言"              content={form.comment}                  accent={accent} multiline />
 
         {/* 2-col fixed rows */}
         <div className="grid grid-cols-2 gap-3 flex-shrink-0">
@@ -109,7 +109,7 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
         </div>
 
         {/* Full-width fixed field */}
-        <FixedField label="こんな人と繋がりたい" content={form.wantToConnect} accent={accent} />
+        <FixedField label="こんな人と繋がりたい" content={form.wantToConnect} accent={accent} multiline />
       </div>
 
       <Credit className="text-white/20" />
@@ -118,7 +118,7 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
 }
 
 /* ── Full-width field (h=105px) ── */
-function FixedField({ label, content, accent }: { label: string; content: string; accent: AccentDef }) {
+function FixedField({ label, content, accent, multiline }: { label: string; content: string; accent: AccentDef; multiline?: boolean }) {
   return (
     <div
       className="flex-shrink-0 rounded-xl overflow-hidden"
@@ -135,6 +135,8 @@ function FixedField({ label, content, accent }: { label: string; content: string
         text={content}
         maxSize={48}
         minSize={20}
+        multiline={multiline}
+        availableHeight={57}
         className="font-bold leading-none mt-2"
       />
     </div>
