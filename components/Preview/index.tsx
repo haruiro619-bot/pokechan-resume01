@@ -29,7 +29,8 @@ export const PreviewCanvas = forwardRef<HTMLDivElement>(function PreviewCanvas(_
   );
 });
 
-export function Preview({ canvasRef }: { canvasRef: React.RefObject<HTMLDivElement | null> }) {
+// canvasRef は省略可能。省略時は表示専用（ref なし）として動作する。
+export function Preview({ canvasRef }: { canvasRef?: React.RefObject<HTMLDivElement | null> }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.5);
 
@@ -54,7 +55,7 @@ export function Preview({ canvasRef }: { canvasRef: React.RefObject<HTMLDivEleme
           className="absolute top-0 left-0 origin-top-left"
           style={{ transform: `scale(${scale})` }}
         >
-          <PreviewCanvas ref={canvasRef} />
+          <PreviewCanvas ref={canvasRef ?? null} />
         </div>
       </div>
     </section>
