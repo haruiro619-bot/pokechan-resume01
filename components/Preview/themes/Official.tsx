@@ -105,7 +105,6 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
         {/* Full-width fixed fields */}
         <FixedField label="推しポケモン"      content={joinValues(form.oshiPokemon)} accent={accent} />
         <FixedField label="バトルでの推し"    content={joinValues(form.battleOshi)}  accent={accent} />
-        <FixedField label="一言"              content={form.comment}                  accent={accent} multiline />
 
         {/* 2-col fixed rows */}
         <div className="grid grid-cols-2 gap-3 flex-shrink-0">
@@ -123,6 +122,7 @@ export function Official({ form, accent }: { form: ResumeForm; accent: AccentDef
 
         {/* Full-width fixed field */}
         <FixedField label="こんな人と繋がりたい" content={form.wantToConnect} accent={accent} multiline />
+        <FixedField label="一言"                 content={form.comment}       accent={accent} multiline />
       </div>
 
       <Credit className="text-white/20" />

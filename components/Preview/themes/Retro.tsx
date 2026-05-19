@@ -145,9 +145,6 @@ export function Retro({ form }: { form: ResumeForm }) {
             <ProminentRow label="BTL " value={join(form.battleOshi)} />
           )}
 
-          {form.comment && <RetroSep />}
-          {form.comment && <MultilineRow label="MSG " value={form.comment} />}
-
           {(form.rules.length > 0 || form.battleground) && (
             <div className="flex-shrink-0 flex gap-2" style={{ height: 56 }}>
               {form.rules.length > 0 && (
@@ -172,6 +169,8 @@ export function Retro({ form }: { form: ResumeForm }) {
           {form.playHistory    && <DataRow label="HIST" value={form.playHistory} />}
           {form.wantToConnect  && <MultilineRow label="WANT" value={form.wantToConnect} />}
           {form.oshiCreator    && <DataRow label="FAV " value={form.oshiCreator} />}
+          {form.comment && <RetroSep />}
+          {form.comment && <MultilineRow label="MSG " value={form.comment} />}
         </div>
       </div>
 

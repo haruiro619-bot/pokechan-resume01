@@ -130,12 +130,9 @@ export function Starry({ form, accent }: { form: ResumeForm; accent: AccentDef }
 
         {/* 推しポケモン + バトルでの推し */}
         <div className="grid grid-cols-2 gap-3 flex-shrink-0">
-          <StarryPanel label="推しポケモン"   content={joinValues(form.oshiPokemon)} accent={accent} />
-          <StarryPanel label="バトルでの推し" content={joinValues(form.battleOshi)}  accent={accent} />
+          <StarryPanel label="推しポケモン"   content={joinValues(form.oshiPokemon)} accent={accent} multiline />
+          <StarryPanel label="バトルでの推し" content={joinValues(form.battleOshi)}  accent={accent} multiline />
         </div>
-
-        {/* 一言 — multiline */}
-        <StarryPanel label="一言" content={form.comment} accent={accent} multiline />
 
         {/* 2-col grids */}
         <div className="grid grid-cols-2 gap-3 flex-shrink-0">
@@ -153,6 +150,9 @@ export function Starry({ form, accent }: { form: ResumeForm; accent: AccentDef }
 
         {/* こんな人と繋がりたい — multiline */}
         <StarryPanel label="こんな人と繋がりたい" content={form.wantToConnect} accent={accent} multiline />
+
+        {/* 一言 — multiline（最下部） */}
+        <StarryPanel label="一言" content={form.comment} accent={accent} multiline />
       </div>
 
       <Credit className="text-white/20" />
